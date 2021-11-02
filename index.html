@@ -7,13 +7,36 @@
 		<title>Testing Site</title>
 
 		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+		<script src="https://stage.freetc.net/static/scripts/widget/tcwidget.js" async></script>
 	</head>
 	<body>
-		<button type="button">Open example.com</button>
+		<header class="flex gap-16">
+			<button type="button">Open example.com</button>
+
+			<button
+				type="button"
+				class="tc-background-yellow"
+				data-tc-event="5f96cd6b8c926e3a428cf031"
+				data-tc-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6InN0YWdlLmZyZWV0Yy5uZXQifQ.eyJwIjoiNWJhMTBlYTkwYzQzZmMwMDBiMGZjNzg2In0.YmPtNIwL9Tyb8D6_FneqgPtEfRpnPtEN-4pUjf20lhc"
+			>
+				Крипта сбер
+			</button>
+		</header>
 
 		<main>
 			<h1>Logs</h1>
 		</main>
+
+		<script>
+			console.stdlog = console.log.bind(console);
+			console.log = function (...data) {
+				console.stdlog.apply(console, data);
+
+				const event = new CustomEvent("log", { detail: data });
+				window.dispatchEvent(event);
+			};
+		</script>
 
 		<script>
 			const button = document.querySelector("button");
@@ -21,12 +44,18 @@
 
 			button.addEventListener("click", () => {
 				const returnValue = window.open("https://example.com", "_blank");
-
-				const log = document.createElement("p");
-				log.textContent = returnValue;
-
-				main.appendChild(log);
+				appendLog(returnValue);
 			});
+
+			window.addEventListener("log", (event) => {
+				appendLog(event.detail);
+			});
+
+			function appendLog(text) {
+				const log = document.createElement("p");
+				log.textContent = text;
+				main.appendChild(log);
+			}
 		</script>
 	</body>
 </html>
