@@ -9,11 +9,21 @@
 	<body>
 		<button type="button">Open example.com</button>
 
+		<main>
+			<h1>Logs</h1>
+		</main>
+
 		<script>
 			const button = document.querySelector("button");
+			const main = document.querySelector("main");
 
 			button.addEventListener("click", () => {
-				window.open("https://example.com");
+				const returnValue = window.open("https://example.com", "_blank");
+
+				const log = document.createElement("p");
+				log.textContent = returnValue;
+
+				main.appendChild(log);
 			});
 		</script>
 	</body>
