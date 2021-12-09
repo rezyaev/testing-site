@@ -29,34 +29,5 @@
 				window.dispatchEvent(event);
 			};
 		</script>
-
-		<script>
-			const button = document.querySelector("button");
-			const main = document.querySelector("main");
-
-			button.addEventListener("click", () => {
-				// const returnValue = window.open("https://example.com", "_blank");
-				// appendLog(returnValue);
-
-				const url =
-					"https://stage.freetc.net/v1/widgets/common?event=5f05e170c6290a28f035e51b&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6InN0YWdlLmZyZWV0Yy5uZXQifQ.eyJwIjoiNWIwMjg2Y2U1MTc1NjUwMDBkOWNiMWNhIn0.nhTEnL7EHnRhCIZ7FNr00oeEo3TI_vOrW0xuMxJLogM&partner=5b0286ce517565000d9cb1ca&m=mobile&utm=618124aa170ae25d18f44b7b&r=1&org=5b0286ce517565000d9cb1ca&city=1486209&category=592841f8515e35002dead964&tags=592841f8515e35002dead97b%2CProgressive";
-
-				const opened = window.open(url, "_blank");
-				appendLog(opened);
-				if (!opened) {
-					window.location = url;
-				}
-			});
-
-			window.addEventListener("log", (event) => {
-				appendLog(event.detail);
-			});
-
-			function appendLog(text) {
-				const log = document.createElement("p");
-				log.textContent = text;
-				main.appendChild(log);
-			}
-		</script>
 	</body>
 </html>
